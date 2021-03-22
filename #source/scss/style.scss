@@ -1,0 +1,174 @@
+//variables
+//color
+$clr-white: #FFF;
+$clr-light-gray: #F5F6F7;
+
+$clr-dark-gray: #0F2336;
+$clr-gray: #576D81;
+
+$clr-orange: #F3AF47;
+
+$clr-blue: #00CCCC;
+$clr-dark-blue: #10afaf;
+$clr-light-blue: #E1F9F9;
+
+//font-family
+$txt-family: 'Roboto',
+sans-serif;
+
+//padding
+$pdng: 0 4%;
+
+//transition
+$transit: all 0.3s ease-in-out;
+
+//mixin txt properties: color, font-size, font-weight and text-decoration
+@mixin txt-prop ($clr:$clr-light-gray, $sz:1em, $wt: 400, $dec: none) {
+    color: $clr;
+    font-size: $sz;
+    font-weight: $wt;
+    text-decoration: $dec;
+}
+
+//templates
+//focus state
+%focus-state:focus {
+    box-shadow: 0 0 0 0.5rem $clr-orange;
+}
+
+%link_dark-gray {
+    display: block;
+
+    @include txt-prop($clr-dark-gray, 1.4rem, bold);
+    max-width: 75ch;
+    width: auto;
+    max-height: 3.5em;
+    height: auto;
+    margin: auto;
+
+    padding: 1.2em 2em;
+
+    border-radius: 0.8rem;
+
+    transition: $transit;
+
+    @extend %focus-state;
+
+    &:hover {
+        color: $clr-blue;
+    }
+
+    &:active {
+
+        color: $clr-dark-blue;
+    }
+}
+
+//dark gray button
+%button_dark-gray {
+    max-width: 3em;
+    width: auto;
+    max-height: 3.5em;
+    height: auto;
+    padding: 1.2em 1.9em;
+
+    border-radius: 0.8rem;
+
+    transition: $transit;
+
+    @include txt-prop($clr-white, 1.4rem, bold);
+    background-color: $clr-dark-gray;
+
+    @extend %focus-state;
+
+    &:hover {
+        color: $clr-dark-gray;
+        background-color: $clr-blue;
+    }
+
+    &:active {
+        background-color: $clr-dark-blue;
+    }
+}
+
+//null
+* {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+
+    font-family: $txt-family;
+    font-size: 10px;
+
+    line-height: 1.7rem;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 11rem;
+    padding: $pdng;
+    align-items: center;
+
+    background-color: $clr-light-gray;
+
+    &__wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        width: 100%;
+        max-width: 110rem;
+        height: 5rem;
+        margin: auto;
+    }
+
+    &__logo {
+        background: no-repeat url('../img/logo.svg');
+
+        width: 13rem;
+        height: 4.7rem;
+
+        border-radius: 0.8rem;
+
+        transition: $transit;
+
+        @extend %focus-state;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $clr-light-blue;
+        }
+
+        &:active {
+            background-color: $clr-light-blue;
+        }
+    }
+
+    &__nav {}
+
+    &__list {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 1.7rem;
+        align-items: center;
+
+        max-width: 41rem;
+    }
+
+    &__item {
+        list-style: none;
+    }
+
+    &__link {
+        @extend %link_dark-gray;
+    }
+
+    &__button {
+        @extend %button_dark-gray;
+    }
+}
